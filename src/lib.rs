@@ -29,6 +29,14 @@ use core::alloc::{GlobalAlloc, Layout};
 use core::ffi::c_void;
 use ffi::*;
 
+#[cfg(any(
+    all(feature="secure_full", any(feature="secure_1", feature="secure_2", feature="secure_3")),
+    all(feature="secure_1", any(feature="secure_full", feature="secure_2", feature="secure_3")),
+    all(feature="secure_2", any(feature="secure_1", feature="secure_full", feature="secure_3")),
+    all(feature="secure_3", any(feature="secure_1", feature="secure_2", feature="secure_full"))
+))]
+compile_error!("Choose only one secure option!");
+
 /// Drop-in mimalloc global allocator.
 ///
 /// ## Usage

@@ -26,7 +26,11 @@ libc = "0.2"
 cc = "1.0"
 
 [features]
-secure = []
+secure = ["secure_full"]
+secure_full = []
+secure_3 = []
+secure_2 = []
+secure_1 = []
 debug = []
 debug_in_debug = []
 override = []

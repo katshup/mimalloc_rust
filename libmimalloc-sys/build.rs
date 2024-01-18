@@ -18,8 +18,14 @@ fn main() {
         }
     }
 
-    if env::var_os("CARGO_FEATURE_SECURE").is_some() {
+    if env::var_os("CARGO_FEATURE_SECURE_FULL").is_some() {
         build.define("MI_SECURE", "4");
+    } else if env::var_os("CARGO_FEATURE_SECURE_3").is_some() {
+        build.define("MI_SECURE", "3");
+    } else if env::var_os("CARGO_FEATURE_SECURE_2").is_some() {
+        build.define("MI_SECURE", "2");
+    } else if env::var_os("CARGO_FEATURE_SECURE_1").is_some() {
+        build.define("MI_SECURE", "1");
     }
 
     let dynamic_tls = env::var("CARGO_FEATURE_LOCAL_DYNAMIC_TLS").is_ok();
